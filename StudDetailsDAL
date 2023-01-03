@@ -1,0 +1,26 @@
+public class StudDetailsDAL
+    {
+        public static void InsertStudDetails(SqlTransaction NewTransation, DetailsModel details)
+        {
+            try {
+                SqlParameter ParStudName = new SqlParameter("@StudName", details.StudName);
+                SqlParameter ParStudRollNo = new SqlParameter("@StudRollNumber", details.StudRollNo);
+                SqlParameter[] parameters = { ParStudName, ParStudRollNo };
+
+                SqlHelper.ExecuteNonQuery(NewTransation
+                    ,CommandType.StoredProcedure
+                    ,StoreProcedureConstent.INSERT_STUDENT_DETAILS
+                    ,0
+                    , parameters
+                    );
+
+            } catch (Exception ex){ throw ex; }
+        }
+
+        public static DataTable GetStudDetails(SqlTransaction newTransation)
+        {
+            DataTable dtDetails = new DataTable();
+            SqlHelper.FillDatatable(newTransation,CommandType.StoredProcedure,StoreProcedureConstent.GET_STUDENT_DETAILS, dtDetails);
+            return dtDetails;
+        }
+    }
