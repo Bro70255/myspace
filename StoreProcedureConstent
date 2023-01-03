@@ -1,0 +1,2 @@
+        public const string INSERT_STUDENT_DETAILS = "imsInsertStudentDetails";
+        public const string GET_STUDENT_DETAILS = "imsGetStudentDetails";
